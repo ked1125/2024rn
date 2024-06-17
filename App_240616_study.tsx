@@ -17,6 +17,7 @@ const App = () => {
 
   // const onChangeText = (text: any) => {
   const onChangeText = (text: string) => {
+    // text = event
     // console.log(text);
     setTodoText(text);
   };
@@ -36,7 +37,8 @@ const App = () => {
     // alert(itemId);
     // setTodos(todos.filter((task)=>{return()}))
     // setTodos(todos.filter((task)=>))
-    setTodos(todos.filter(task => task.id != itemId));
+    setTodos(todos.filter(task => task.id != itemId)); // 배열.filter() => 배열 요소들 순회하면서, true인 것만 반환
+    // task는 todos.map에서의 item과같이 요소가 인자값에 들어감 - 이름 작명 가능
   };
 
   const checkCompleted = (itemId: string) => {
@@ -53,7 +55,7 @@ const App = () => {
   const updateTask = (itemId, newText) => {
     // alert('update');
     setTodos(
-      todos.map(item => (item.id === itemId ? {...item, text: newText} : item)),
+      todos.map(item => (item.id === itemId ? {...item, text: newText} : item)), // ...item 중 text:를 newText로 바꾸라는의미?:<
     );
   };
 
@@ -64,6 +66,7 @@ const App = () => {
         <Input onChangeText={onChangeText} todoText={todoText} />
         <Button title="add todo" onPress={addTodo} />
         <ScrollView>
+          {/* {todos.map((item, idx) => { */}
           {[...todos].reverse().map(item => {
             return (
               <Task
